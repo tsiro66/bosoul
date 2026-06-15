@@ -1,15 +1,20 @@
 ---
 interface Props {
+  lang?: 'en' | 'el';
   heading?: string;
   subheading?: string;
   description?: string;
 }
 
-const {
-  heading = 'The Experience',
-  subheading = 'Our Space',
-  description = 'Step into a sanctuary designed for deep restoration. Every detail — from the warm ambient lighting to the carefully curated treatment rooms — is crafted to help you disconnect, recalibrate, and reconnect with your body.',
-} = Astro.props;
+const { lang = 'en', heading, subheading, description } = Astro.props;
+
+import { t, type Locale } from '@i18n/index';
+
+const locale = lang as Locale;
+
+const resolvedHeading = heading ?? t(locale, 'experience.heading');
+const resolvedSubheading = subheading ?? t(locale, 'experience.subheading');
+const resolvedDescription = description ?? t(locale, 'experience.description');
 
 import img1 from '@assets/bosoul1.jpg';
 import img2 from '@assets/bosoul2.jpg';
@@ -17,14 +22,14 @@ import img3 from '@assets/bosoul3.jpg';
 import img4 from '@assets/bosoul4.jpg';
 
 const photos = [
-  { src: img1, alt: 'Pilates reformer session with personalized guidance' },
-  { src: img2, alt: 'Assisted stretching and mobility work' },
-  { src: img3, alt: 'Pilates ring therapy for strength and flexibility' },
-  { src: img4, alt: 'One-on-one consultation and assessment' },
+  { src: img1, alt: t(locale, 'experience.photos.alt1') },
+  { src: img2, alt: t(locale, 'experience.photos.alt2') },
+  { src: img3, alt: t(locale, 'experience.photos.alt3') },
+  { src: img4, alt: t(locale, 'experience.photos.alt4') },
 ];
 ---
 
-<section class="relative bg-[#FDFBF7] overflow-hidden">
+<section class="relative z-10 mt-[100vh] bg-[#FDFBF7] overflow-hidden">
 
   <div class="absolute inset-0 pointer-events-none">
     <div class="absolute top-1/2 left-0 w-1/3 h-1/2 bg-gradient-to-r from-amber-50/30 to-transparent blur-2xl"></div>
@@ -36,15 +41,15 @@ const photos = [
     <div class="max-w-2xl mb-16 lg:mb-20">
 
       <span class="inline-block text-[10px] sm:text-xs font-medium uppercase tracking-[0.3em] text-amber-700/70 mb-6">
-        {subheading}
+        {resolvedSubheading}
       </span>
 
       <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.15] tracking-tight text-zinc-800">
-        {heading}
+        {resolvedHeading}
       </h2>
 
       <p class="mt-6 text-base sm:text-lg leading-relaxed text-zinc-500 max-w-lg">
-        {description}
+        {resolvedDescription}
       </p>
 
     </div>

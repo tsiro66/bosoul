@@ -1,0 +1,27 @@
+{
+  "nav": {
+    "about": "About",
+    "services": "Services",
+    "contact": "Contact",
+    "book": "Book",
+    "bookSession": "Book a Session",
+    "toggleMenu": "Toggle menu",
+    "logoAlt": "BoSoul Therapy"
+  },
+  "hero": {
+    "badge": "Holistic Health & Wellness",
+    "ctaText": "Book a Session",
+    "athensLabel": "Athens, Greece"
+  },
+  "experience": {
+    "heading": "The Experience",
+    "subheading": "Our Space",
+    "description": "Step into a sanctuary designed for deep restoration. Every detail — from the warm ambient lighting to the carefully curated treatment rooms — is crafted to help you disconnect, recalibrate, and reconnect with your body.",
+    "photos": {
+      "alt1": "Pilates reformer session with personalized guidance",
+      "alt2": "Assisted stretching and mobility work",
+      "alt3": "Pilates ring therapy for strength and flexibility",
+      "alt4": "One-on-one consultation and assessment"
+    }
+  }
+}

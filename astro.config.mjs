@@ -14,6 +14,7 @@ export default defineConfig({
       provider: fontProviders.google(),
       weights: [400, 700],
       styles: ['normal', 'italic'],
+      subsets: ['greek', 'latin'],
       fallbacks: ['serif'],
     },
     {
@@ -22,6 +23,7 @@ export default defineConfig({
       provider: fontProviders.google(),
       weights: [400, 600, 700],
       styles: ['normal', 'italic'],
+      subsets: ['greek', 'latin'],
       fallbacks: ['sans-serif'],
     },
   ],

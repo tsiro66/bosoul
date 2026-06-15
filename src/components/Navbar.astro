@@ -5,16 +5,22 @@ interface Props {
 
 const { lang = 'en' } = Astro.props;
 
+import { t, type Locale } from '@i18n/index';
+
+const locale = lang as Locale;
+
+const prefix = lang === 'el' ? '/el' : '';
+
 const navLinks = [
-  { label: 'About', href: '/about' },
-  { label: 'Services', href: '/services' },
-  { label: 'Contact', href: '/contact' },
+  { label: t(locale, 'nav.about'), href: `${prefix}/about` },
+  { label: t(locale, 'nav.services'), href: `${prefix}/services` },
+  { label: t(locale, 'nav.contact'), href: `${prefix}/contact` },
 ];
 
 import Logo from '@assets/bosoul-logo.png';
 ---
 
-<nav class="fixed top-0 inset-x-0 z-50 bg-[#FDFBF7]/80 backdrop-blur-md border-b border-amber-100/40">
+<nav id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="flex h-16 sm:h-20 items-center justify-between">
 
@@ -22,39 +28,39 @@ import Logo from '@assets/bosoul-logo.png';
         {navLinks.slice(0, 2).map((link) => (
           <a
             href={link.href}
-            class="text-xs sm:text-sm font-medium tracking-[0.15em] uppercase text-zinc-500 transition-colors duration-300 hover:text-amber-700"
+            class="nav-link text-xs sm:text-sm font-medium tracking-[0.15em] uppercase transition-colors duration-300"
           >
             {link.label}
           </a>
         ))}
       </div>
 
-      <a href="/" class="flex items-center justify-center">
+      <a href={prefix || '/'} class="flex items-center justify-center">
         <img
           src={Logo.src}
-          alt="BoSoul Therapy"
+          alt={t(locale, 'nav.logoAlt')}
           class="h-10 sm:h-12 w-auto opacity-80 transition-opacity duration-300 hover:opacity-100"
         />
       </a>
 
-      <div class="flex items-center gap-8">
+      <div class="flex items-center gap-6">
         <a
           href={navLinks[2].href}
-          class="text-xs sm:text-sm font-medium tracking-[0.15em] uppercase text-zinc-500 transition-colors duration-300 hover:text-amber-700"
+          class="nav-link text-xs sm:text-sm font-medium tracking-[0.15em] uppercase transition-colors duration-300"
         >
           {navLinks[2].label}
         </a>
         <a
-          href="/contact"
-          class="hidden sm:inline-flex items-center rounded-full border border-zinc-800/15 px-5 py-2 text-xs font-medium tracking-[0.12em] uppercase text-zinc-600 transition-all duration-300 hover:border-amber-300/50 hover:text-amber-700 hover:shadow-[0_0_20px_-6px_rgba(217,119,6,0.15)]"
+          href={`${prefix}/contact`}
+          class="hidden sm:inline-flex items-center rounded-full border px-5 py-2 text-xs font-medium tracking-[0.12em] uppercase nav-book transition-all duration-300"
         >
-          Book
+          {t(locale, 'nav.book')}
         </a>
       </div>
 
       <button
-        class="sm:hidden p-2 text-zinc-500"
-        aria-label="Toggle menu"
+        class="sm:hidden p-2 hamburger"
+        aria-label={t(locale, 'nav.toggleMenu')}
         onclick="document.getElementById('mobile-menu')?.classList.toggle('hidden')"
       >
         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
@@ -65,22 +71,102 @@ import Logo from '@assets/bosoul-logo.png';
     </div>
   </div>
 
-  <div id="mobile-menu" class="hidden sm:hidden border-t border-amber-100/40 bg-[#FDFBF7]/95 backdrop-blur-md">
+  <div id="mobile-menu" class="hidden sm:hidden nav-mobile-menu">
     <div class="px-6 py-6 space-y-4">
       {navLinks.map((link) => (
         <a
           href={link.href}
-          class="block text-sm font-medium tracking-[0.15em] uppercase text-zinc-500 transition-colors duration-300 hover:text-amber-700"
+          class="nav-mobile-link block text-sm font-medium tracking-[0.15em] uppercase transition-colors duration-300"
         >
           {link.label}
         </a>
       ))}
+      <div class="flex items-center gap-3 pt-2">
+        {
+          lang === 'el'
+            ? <span class="text-sm font-medium tracking-[0.15em] uppercase text-amber-700">EL</span>
+            : <a href="/el" class="nav-lang-link text-sm font-medium tracking-[0.15em] uppercase transition-colors duration-300">EL</a>
+        }
+        <span class="text-xs nav-lang-slash select-none">/</span>
+        {
+          lang === 'en'
+            ? <span class="text-sm font-medium tracking-[0.15em] uppercase text-amber-700">EN</span>
+            : <a href="/" class="nav-lang-link text-sm font-medium tracking-[0.15em] uppercase transition-colors duration-300">EN</a>
+        }
+      </div>
       <a
-        href="/contact"
+        href={`${prefix}/contact`}
         class="block text-sm font-medium tracking-[0.15em] uppercase text-amber-700"
       >
-        Book a Session
+        {t(locale, 'nav.bookSession')}
       </a>
     </div>
   </div>
+
+  <div class="fixed right-6 lg:right-8 top-0 h-16 sm:h-20 hidden sm:flex items-center z-[60]">
+    <div class="flex items-center gap-1.5">
+      {
+        lang === 'el'
+          ? <span class="text-xs sm:text-sm font-medium tracking-[0.15em] uppercase text-amber-700">EL</span>
+          : <a href="/el" class="nav-lang-link text-xs sm:text-sm font-medium tracking-[0.15em] uppercase transition-colors duration-300">EL</a>
+      }
+      <span class="text-xs nav-lang-slash select-none">/</span>
+      {
+        lang === 'en'
+          ? <span class="text-xs sm:text-sm font-medium tracking-[0.15em] uppercase text-amber-700">EN</span>
+          : <a href="/" class="nav-lang-link text-xs sm:text-sm font-medium tracking-[0.15em] uppercase transition-colors duration-300">EN</a>
+      }
+    </div>
+  </div>
 </nav>
+
+<style>
+  #navbar { background: transparent; border-bottom: 1px solid transparent; }
+  #navbar.scrolled { background: rgba(253, 251, 247, 0.8); backdrop-filter: blur(12px); border-bottom-color: rgba(251, 232, 191, 0.4); }
+
+  .nav-link { color: rgba(255, 255, 255, 0.7); }
+  .nav-link:hover { color: #f59e0b; }
+  #navbar.scrolled .nav-link { color: rgba(113, 113, 122, 1); }
+  #navbar.scrolled .nav-link:hover { color: #b45309; }
+
+  .nav-book { border-color: rgba(255, 255, 255, 0.2); color: rgba(255, 255, 255, 0.8); }
+  .nav-book:hover { border-color: rgba(255, 255, 255, 0.5); color: #fff; box-shadow: 0 0 20px -6px rgba(255, 255, 255, 0.15); }
+  #navbar.scrolled .nav-book { border-color: rgba(39, 39, 42, 0.15); color: rgba(82, 82, 91, 1); }
+  #navbar.scrolled .nav-book:hover { border-color: rgba(217, 119, 6, 0.5); color: #b45309; box-shadow: 0 0 20px -6px rgba(217, 119, 6, 0.15); }
+
+  .nav-mobile-menu { border-top: 1px solid rgba(251, 232, 191, 0.4); background: rgba(253, 251, 247, 0.95); backdrop-filter: blur(12px); }
+  #navbar.scrolled .nav-mobile-menu { border-top-color: rgba(251, 232, 191, 0.4); }
+
+  .nav-mobile-link { color: rgba(113, 113, 122, 1); }
+  .nav-mobile-link:hover { color: #b45309; }
+
+  #navbar .hamburger { color: rgba(255, 255, 255, 0.7); }
+  #navbar.scrolled .hamburger { color: rgba(113, 113, 122, 1); }
+
+  .nav-lang-link { color: rgba(255, 255, 255, 0.7); }
+  .nav-lang-link:hover { color: #f59e0b; }
+  #navbar.scrolled .nav-lang-link { color: rgba(113, 113, 122, 1); }
+  #navbar.scrolled .nav-lang-link:hover { color: #b45309; }
+
+  .nav-lang-slash { color: rgba(255, 255, 255, 0.3); }
+  #navbar.scrolled .nav-lang-slash { color: rgba(212, 212, 216, 1); }
+
+</style>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  if (navbar) {
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          navbar.classList.toggle('scrolled', window.scrollY >= window.innerHeight);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+</script>
