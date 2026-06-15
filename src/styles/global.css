@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+@theme inline {
+  --font-serif: var(--font-vollkorn);
+  --font-sans: var(--font-open-sans);
+}

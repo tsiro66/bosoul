@@ -1,0 +1,104 @@
+---
+interface Props {
+  heading?: string;
+  subheading?: string;
+  description?: string;
+}
+
+const {
+  heading = 'The Experience',
+  subheading = 'Our Space',
+  description = 'Step into a sanctuary designed for deep restoration. Every detail — from the warm ambient lighting to the carefully curated treatment rooms — is crafted to help you disconnect, recalibrate, and reconnect with your body.',
+} = Astro.props;
+
+import img1 from '@assets/bosoul1.jpg';
+import img2 from '@assets/bosoul2.jpg';
+import img3 from '@assets/bosoul3.jpg';
+import img4 from '@assets/bosoul4.jpg';
+
+const photos = [
+  { src: img1, alt: 'Pilates reformer session with personalized guidance' },
+  { src: img2, alt: 'Assisted stretching and mobility work' },
+  { src: img3, alt: 'Pilates ring therapy for strength and flexibility' },
+  { src: img4, alt: 'One-on-one consultation and assessment' },
+];
+---
+
+<section class="relative bg-[#FDFBF7] overflow-hidden">
+
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/2 left-0 w-1/3 h-1/2 bg-gradient-to-r from-amber-50/30 to-transparent blur-2xl"></div>
+    <div class="absolute bottom-0 right-0 w-1/2 h-1/3 bg-gradient-to-l from-amber-50/20 to-transparent blur-2xl"></div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 py-20 lg:py-32">
+
+    <div class="max-w-2xl mb-16 lg:mb-20">
+
+      <span class="inline-block text-[10px] sm:text-xs font-medium uppercase tracking-[0.3em] text-amber-700/70 mb-6">
+        {subheading}
+      </span>
+
+      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.15] tracking-tight text-zinc-800">
+        {heading}
+      </h2>
+
+      <p class="mt-6 text-base sm:text-lg leading-relaxed text-zinc-500 max-w-lg">
+        {description}
+      </p>
+
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-12 gap-3 sm:gap-4 lg:gap-5">
+
+      <div class="col-span-2 lg:col-span-5 lg:row-span-2 group relative overflow-hidden rounded-2xl border border-amber-200/50 shadow-[0_0_40px_-10px_rgba(217,119,6,0.12)]">
+        <img
+          src={photos[0].src.src}
+          alt={photos[0].alt}
+          class="h-full min-h-[280px] lg:min-h-0 w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-amber-900/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      </div>
+
+      <div class="col-span-1 lg:col-span-4 group relative overflow-hidden rounded-2xl border border-amber-200/50 shadow-[0_0_30px_-10px_rgba(217,119,6,0.10)]">
+        <img
+          src={photos[1].src.src}
+          alt={photos[1].alt}
+          class="h-48 sm:h-56 lg:h-64 w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-amber-900/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      </div>
+
+      <div class="col-span-1 lg:col-span-3 group relative overflow-hidden rounded-2xl border border-amber-200/50 shadow-[0_0_30px_-10px_rgba(217,119,6,0.10)]">
+        <img
+          src={photos[2].src.src}
+          alt={photos[2].alt}
+          class="h-48 sm:h-56 lg:h-64 w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-amber-900/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      </div>
+
+      <div class="col-span-2 lg:col-span-7 group relative overflow-hidden rounded-2xl border border-amber-200/50 shadow-[0_0_40px_-10px_rgba(217,119,6,0.12)]">
+        <img
+          src={photos[3].src.src}
+          alt={photos[3].alt}
+          class="h-56 sm:h-64 lg:h-72 w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-amber-900/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+  h2 {
+    font-family: var(--font-vollkorn);
+  }
+</style>

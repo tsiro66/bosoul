@@ -1,6 +1,12 @@
 ---
-// EL home — entry point only; sections/layout wired in a later plan.
+import MainLayout from '@layouts/MainLayout.astro';
+import Hero from '@components/Hero.astro';
 ---
-<!doctype html>
-<html lang="el"><head><meta charset="utf-8" /><title>astro-tailwind-i18n-template</title></head>
-<body></body></html>
+
+<MainLayout lang="el" title="bosoul">
+  <Hero
+    title="BoSoul Therapy"
+    subtitle="Ένα καταφύγιο για το σώμα και το πνεύμα — όπου η συνειδητή κίνηση, η αποκαταστατική σωματική θεραπεία και οι αρχαίες θεραπευτικές πρακτικές συναντώνται στην καρδιά της Αθήνας."
+    ctaLink="/contact"
+  />
+</MainLayout>

@@ -1,0 +1,98 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  badge?: string;
+}
+
+const {
+  title = 'BoSoul Therapy',
+  subtitle = 'Restore balance through mindful movement, breathwork, and holistic body therapy in the heart of Athens.',
+  ctaText = 'Book a Session',
+  ctaLink = '#contact',
+  badge = 'Holistic Health & Wellness',
+} = Astro.props;
+---
+
+<section class="relative min-h-screen bg-[#FDFBF7] overflow-hidden">
+
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-amber-50/40 to-transparent"></div>
+    <div class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-amber-50/20 to-transparent"></div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 py-16 lg:py-0 lg:min-h-screen lg:flex lg:items-center lg:gap-16">
+
+    <div class="flex-1 max-w-xl lg:max-w-lg">
+
+      <span class="inline-block text-[10px] sm:text-xs font-medium uppercase tracking-[0.3em] text-amber-700/70 mb-8 lg:mb-10">
+        {badge}
+      </span>
+
+      <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.1] tracking-tight text-zinc-800">
+        {title}
+      </h1>
+
+      <p class="mt-6 lg:mt-8 text-base sm:text-lg leading-relaxed text-zinc-500 max-w-md">
+        {subtitle}
+      </p>
+
+      <div class="mt-10 lg:mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <a
+          href={ctaLink}
+          class="group inline-flex items-center gap-2 rounded-full bg-zinc-800 px-8 py-3.5 text-sm font-medium tracking-wide text-[#FDFBF7] transition-all duration-300 hover:bg-zinc-700 hover:shadow-[0_0_40px_-8px_rgba(217,119,6,0.25)]"
+        >
+          {ctaText}
+          <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+          </svg>
+        </a>
+        <span class="text-xs tracking-widest uppercase text-zinc-400">Athens, Greece</span>
+      </div>
+
+    </div>
+
+    <div class="flex-1 mt-16 lg:mt-0 flex items-center justify-center lg:justify-end">
+      <div class="relative">
+
+        <div class="absolute -inset-12 lg:-inset-16 rounded-[2rem] bg-gradient-to-br from-amber-100/40 via-amber-50/20 to-transparent blur-xl"></div>
+
+        <div class="relative flex items-end gap-3 sm:gap-4 lg:gap-5 h-[340px] sm:h-[420px] lg:h-[520px]">
+
+          <div class="absolute inset-0 -m-10 rounded-3xl bg-gradient-to-b from-amber-100/50 via-amber-50/30 to-transparent blur-2xl"></div>
+
+          <div
+            class="relative w-20 sm:w-24 lg:w-28 h-[220px] sm:h-[280px] lg:h-[340px] rounded-t-[999px] bg-gradient-to-b from-amber-100/80 via-amber-50/60 to-[#FDFBF7] border border-amber-300/60 shadow-[0_0_60px_-8px_rgba(217,119,6,0.25)] overflow-hidden"
+          >
+            <div class="absolute inset-0.5 rounded-t-[999px] bg-gradient-to-b from-amber-200/30 to-transparent"></div>
+          </div>
+
+          <div
+            class="relative w-24 sm:w-32 lg:w-36 h-[280px] sm:h-[360px] lg:h-[440px] rounded-t-[999px] bg-gradient-to-b from-amber-100/90 via-amber-50/70 to-[#FDFBF7] border border-amber-300/70 shadow-[0_0_80px_-4px_rgba(217,119,6,0.3)] overflow-hidden"
+          >
+            <div class="absolute inset-0.5 rounded-t-[999px] bg-gradient-to-b from-amber-200/40 to-transparent"></div>
+            <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-amber-200/15 to-transparent"></div>
+          </div>
+
+          <div
+            class="relative w-20 sm:w-24 lg:w-28 h-[200px] sm:h-[260px] lg:h-[320px] rounded-t-[999px] bg-gradient-to-b from-amber-100/80 via-amber-50/60 to-[#FDFBF7] border border-amber-300/60 shadow-[0_0_60px_-8px_rgba(217,119,6,0.25)] overflow-hidden"
+          >
+            <div class="absolute inset-0.5 rounded-t-[999px] bg-gradient-to-b from-amber-200/30 to-transparent"></div>
+          </div>
+
+          <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-amber-900/[0.04] rounded-full blur-xl"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+  h1 {
+    font-family: var(--font-vollkorn);
+  }
+</style>

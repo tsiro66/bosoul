@@ -1,0 +1,86 @@
+---
+interface Props {
+  lang?: 'en' | 'el';
+}
+
+const { lang = 'en' } = Astro.props;
+
+const navLinks = [
+  { label: 'About', href: '/about' },
+  { label: 'Services', href: '/services' },
+  { label: 'Contact', href: '/contact' },
+];
+
+import Logo from '@assets/bosoul-logo.png';
+---
+
+<nav class="fixed top-0 inset-x-0 z-50 bg-[#FDFBF7]/80 backdrop-blur-md border-b border-amber-100/40">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="flex h-16 sm:h-20 items-center justify-between">
+
+      <div class="flex items-center gap-8">
+        {navLinks.slice(0, 2).map((link) => (
+          <a
+            href={link.href}
+            class="text-xs sm:text-sm font-medium tracking-[0.15em] uppercase text-zinc-500 transition-colors duration-300 hover:text-amber-700"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+
+      <a href="/" class="flex items-center justify-center">
+        <img
+          src={Logo.src}
+          alt="BoSoul Therapy"
+          class="h-10 sm:h-12 w-auto opacity-80 transition-opacity duration-300 hover:opacity-100"
+        />
+      </a>
+
+      <div class="flex items-center gap-8">
+        <a
+          href={navLinks[2].href}
+          class="text-xs sm:text-sm font-medium tracking-[0.15em] uppercase text-zinc-500 transition-colors duration-300 hover:text-amber-700"
+        >
+          {navLinks[2].label}
+        </a>
+        <a
+          href="/contact"
+          class="hidden sm:inline-flex items-center rounded-full border border-zinc-800/15 px-5 py-2 text-xs font-medium tracking-[0.12em] uppercase text-zinc-600 transition-all duration-300 hover:border-amber-300/50 hover:text-amber-700 hover:shadow-[0_0_20px_-6px_rgba(217,119,6,0.15)]"
+        >
+          Book
+        </a>
+      </div>
+
+      <button
+        class="sm:hidden p-2 text-zinc-500"
+        aria-label="Toggle menu"
+        onclick="document.getElementById('mobile-menu')?.classList.toggle('hidden')"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden sm:hidden border-t border-amber-100/40 bg-[#FDFBF7]/95 backdrop-blur-md">
+    <div class="px-6 py-6 space-y-4">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="block text-sm font-medium tracking-[0.15em] uppercase text-zinc-500 transition-colors duration-300 hover:text-amber-700"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="/contact"
+        class="block text-sm font-medium tracking-[0.15em] uppercase text-amber-700"
+      >
+        Book a Session
+      </a>
+    </div>
+  </div>
+</nav>

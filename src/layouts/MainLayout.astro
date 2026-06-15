@@ -1,0 +1,29 @@
+---
+interface Props {
+  lang?: 'en' | 'el';
+  title?: string;
+}
+
+const { lang = 'en', title = 'bosoul' } = Astro.props;
+
+import { Font } from 'astro:assets';
+import '../styles/global.css';
+import Navbar from '@components/Navbar.astro';
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <Font cssVariable="--font-vollkorn" />
+    <Font cssVariable="--font-open-sans" />
+  </head>
+  <body class="bg-[#FDFBF7] font-sans text-zinc-800 antialiased">
+    <Navbar lang={lang} />
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
